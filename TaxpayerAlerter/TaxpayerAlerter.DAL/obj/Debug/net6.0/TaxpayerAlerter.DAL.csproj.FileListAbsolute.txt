@@ -1,0 +1,12 @@
+C:\Users\User\source\repos\Taxpayer-Alerter\TaxpayerAlerter\TaxpayerAlerter.DAL\bin\Debug\net6.0\TaxpayerAlerter.DAL.deps.json
+C:\Users\User\source\repos\Taxpayer-Alerter\TaxpayerAlerter\TaxpayerAlerter.DAL\bin\Debug\net6.0\TaxpayerAlerter.DAL.dll
+C:\Users\User\source\repos\Taxpayer-Alerter\TaxpayerAlerter\TaxpayerAlerter.DAL\bin\Debug\net6.0\TaxpayerAlerter.DAL.pdb
+C:\Users\User\source\repos\Taxpayer-Alerter\TaxpayerAlerter\TaxpayerAlerter.DAL\obj\Debug\net6.0\TaxpayerAlerter.DAL.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\Taxpayer-Alerter\TaxpayerAlerter\TaxpayerAlerter.DAL\obj\Debug\net6.0\TaxpayerAlerter.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\source\repos\Taxpayer-Alerter\TaxpayerAlerter\TaxpayerAlerter.DAL\obj\Debug\net6.0\TaxpayerAlerter.DAL.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\Taxpayer-Alerter\TaxpayerAlerter\TaxpayerAlerter.DAL\obj\Debug\net6.0\TaxpayerAlerter.DAL.AssemblyInfo.cs
+C:\Users\User\source\repos\Taxpayer-Alerter\TaxpayerAlerter\TaxpayerAlerter.DAL\obj\Debug\net6.0\TaxpayerAlerter.DAL.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\Taxpayer-Alerter\TaxpayerAlerter\TaxpayerAlerter.DAL\obj\Debug\net6.0\TaxpayerAlerter.DAL.dll
+C:\Users\User\source\repos\Taxpayer-Alerter\TaxpayerAlerter\TaxpayerAlerter.DAL\obj\Debug\net6.0\refint\TaxpayerAlerter.DAL.dll
+C:\Users\User\source\repos\Taxpayer-Alerter\TaxpayerAlerter\TaxpayerAlerter.DAL\obj\Debug\net6.0\TaxpayerAlerter.DAL.pdb
+C:\Users\User\source\repos\Taxpayer-Alerter\TaxpayerAlerter\TaxpayerAlerter.DAL\obj\Debug\net6.0\ref\TaxpayerAlerter.DAL.dll
