@@ -8,49 +8,101 @@ using Range = IronXL.Range;
 
 string _doc = "C:/Study/Alfa Bank/Test task/";
 
-Client client = new() { Unp = 7834, FullName = "MIMICHI", Sum = 674};
+List<Client> clients = new()
+{
+    new Client(){ Unp = 7834, FullName = "MIMICHI", Sum = 674},
+    new Client(){ Unp = 5435, FullName = "SUCHI", Sum = 100}
+};
 
-Document doc = new();
-DocumentBuilder builder = new(doc);
+DocumentBuilder builder = new DocumentBuilder();
 
 Font font = builder.Font;
 font.Size = 11;
 font.Color = System.Drawing.Color.Black;
 font.Name = "Calibri";
 
+foreach (Client client in clients)
+{
+    Document doc = new Document();
 
-builder.Writeln($"\nУважаемые: {client.FullName}, информируем вас о том, что вы не погасили кредит\n");
-builder.Writeln("Ваша задолженность: \n");
+    builder.Document = doc;
 
-Table table = builder.StartTable();
+    builder.Writeln($"\nУважаемые: {client.FullName}, информируем вас о том, что вы не погасили кредит\n");
+    builder.Writeln("Ваша задолженность: \n");
 
-builder.InsertCell();
+    builder.StartTable();
 
-builder.Write("Наименование");
+    builder.InsertCell();
 
-builder.InsertCell();
-builder.Write("УНП");
+    builder.Write("Наименование");
 
-builder.InsertCell();
-builder.Write("Сумма");
-builder.EndRow();
+    builder.InsertCell();
+    builder.Write("УНП");
 
-builder.InsertCell();
-builder.Write(client.FullName.ToString());
+    builder.InsertCell();
+    builder.Write("Сумма");
+    builder.EndRow();
 
-builder.InsertCell();
-builder.Write(client.Unp.ToString());
+    builder.InsertCell();
+    builder.Write(client.FullName.ToString());
 
-builder.InsertCell();
-builder.Write(client.Sum.ToString());
-builder.EndRow();
+    builder.InsertCell();
+    builder.Write(client.Unp.ToString());
 
-builder.EndTable();
-builder.Writeln();
+    builder.InsertCell();
+    builder.Write(client.Sum.ToString());
+    builder.EndRow();
 
-builder.Writeln("\nПлатите и фигней не занимайтесь :) \n");
+    builder.EndTable();
 
-doc.Save(_doc + $"{client.Unp}-{DateTime.Now.ToShortDateString()}.docx");
+    builder.Writeln("\nПлатите и фигней не занимайтесь :) \n");
+
+    doc.Save(_doc + $"{client.Unp}-{DateTime.Now.ToShortDateString()}.docx");
+}
+
+
+
+//    Document doc = new();
+//DocumentBuilder builder = new(doc);
+
+//Font font = builder.Font;
+//font.Size = 11;
+//font.Color = System.Drawing.Color.Black;
+//font.Name = "Calibri";
+
+
+//builder.Writeln($"\nУважаемые: {client.FullName}, информируем вас о том, что вы не погасили кредит\n");
+//builder.Writeln("Ваша задолженность: \n");
+
+//Table table = builder.StartTable();
+
+//builder.InsertCell();
+
+//builder.Write("Наименование");
+
+//builder.InsertCell();
+//builder.Write("УНП");
+
+//builder.InsertCell();
+//builder.Write("Сумма");
+//builder.EndRow();
+
+//builder.InsertCell();
+//builder.Write(client.FullName.ToString());
+
+//builder.InsertCell();
+//builder.Write(client.Unp.ToString());
+
+//builder.InsertCell();
+//builder.Write(client.Sum.ToString());
+//builder.EndRow();
+
+//builder.EndTable();
+//builder.Writeln();
+
+//builder.Writeln("\nПлатите и фигней не занимайтесь :) \n");
+
+//doc.Save(_doc + $"{client.Unp}-{DateTime.Now.ToShortDateString()}.docx");
 
 
 //string _xlsxPath = "C:/Users/User/source/repos/Taxpayer-Alerter/TaxpayerAlerter/TaxpayerAlerter.DAL/Files/Для тестового.xlsx";

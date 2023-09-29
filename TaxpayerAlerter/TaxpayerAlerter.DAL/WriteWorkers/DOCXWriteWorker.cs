@@ -9,36 +9,42 @@ namespace TaxpayerAlerter.DAL.WriteWorkers
     {
         private string _docPath = ConfigurationManager.AppSettings["docPath"].ToString();
 
-        public void Write(Client client)
+        public void Write(List<Client> clients)
         {
-            Document doc = new();
-            DocumentBuilder builder = new(doc);
+            DocumentBuilder builder = new DocumentBuilder();
 
             Font font = builder.Font;
             font.Size = 11;
             font.Color = System.Drawing.Color.Black;
             font.Name = "Calibri";
 
-            builder.Writeln($"\nУважаемые: {client.FullName}, информируем вас о том, что вы не погасили кредит\n");
-            builder.Writeln("Ваша задолженность: \n");
+            foreach (Client client in clients)
+            {
+                Document doc = new Document();
 
-            builder.StartTable();
+                builder.Document = doc;
 
-            PutTableCell(builder, "Наименование");
-            PutTableCell(builder, "УНП");
-            PutTableCell(builder, "Сумма");
-            builder.EndRow();
+                builder.Writeln($"\nУважаемые: {client.FullName}, информируем вас о том, что вы не погасили кредит\n");
+                builder.Writeln("Ваша задолженность: \n");
 
-            PutTableCell(builder, client.FullName.ToString());
-            PutTableCell(builder, client.Unp.ToString());
-            PutTableCell(builder, client.Sum.ToString());
-            builder.EndRow();
+                builder.StartTable();
 
-            builder.EndTable();
+                PutTableCell(builder, "Наименование");
+                PutTableCell(builder, "УНП");
+                PutTableCell(builder, "Сумма");
+                builder.EndRow();
 
-            builder.Writeln("\nПлатите и фигней не занимайтесь :) \n");
+                PutTableCell(builder, client.FullName.ToString());
+                PutTableCell(builder, client.Unp.ToString());
+                PutTableCell(builder, client.Sum.ToString());
+                builder.EndRow();
 
-            doc.Save(_docPath + $"{client.Unp}-{DateTime.Now.ToShortDateString()}.docx");
+                builder.EndTable();
+
+                builder.Writeln("\nПлатите и фигней не занимайтесь :) \n");
+
+                doc.Save(_docPath + $"{client.Unp}-{DateTime.Now.ToShortDateString()}.docx");
+            }
         }
 
         private void PutTableCell(DocumentBuilder builder, string textCell)

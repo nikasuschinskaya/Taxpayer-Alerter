@@ -4,6 +4,6 @@ namespace TaxpayerAlerter.DAL.WriteWorkers.Base
 {
     public interface IWriteWorker
     {
-        void Write(Client client);
+        void Write(List<Client> client);
     }
 }
