@@ -7,37 +7,63 @@ using TaxpayerAlerter.DAL.ModelsDAO;
 using Range = IronXL.Range;
 using Newtonsoft.Json;
 using System.Text;
+using System.Net.Http;
+using System.Xml.Linq;
 
-ClientDAO client = new ClientDAO() { Unp = 7834, FullName = "MIMICHI", Name = "Экогрибы", Sum = 674 };
 
-using (HttpClient httpClient = new HttpClient())
+DateTime date1 = new DateTime(2023, 8, 29);
+DateTime date2 = new DateTime(2023, 1, 30);
+
+if (date1 < date2)
 {
-    var requestData = new
-    {
-        dfrom = (DateTime?)null,
-        dto = (DateTime?)null,
-        isduty = false,
-        name = $"{client.FullName}",
-        operation = "="
-    };
-
-    var jsonRequest = JsonConvert.SerializeObject(requestData);
-
-    var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
-
-    var response = await httpClient.PostAsync("http://grp.nalog.gov.by/api/grp-public/search/payer", content);
-
-    string? responseString;
-
-
-    responseString = await response.Content.ReadAsStringAsync();
-
-    if (!response.IsSuccessStatusCode) responseString = "Ошибка при отправке запроса. Статус код: " + (int)response.StatusCode;
-
-
-    Console.WriteLine(responseString);
-
+    Console.WriteLine("29.08.2023 раньше 30.01.2023");
 }
+else if (date1 > date2)
+{
+    Console.WriteLine("30.01.2023 раньше 29.08.2023");
+}
+else
+{
+    Console.WriteLine("Обе даты равны.");
+}
+
+
+//List<ClientDAO> clients = new List<ClientDAO>()
+//{
+//    new ClientDAO() { Unp = "7834", FullName = "MIMICHI", Name = "Экогрибы", Sum = 674 },
+//    new ClientDAO() { Unp = "7834", FullName = "MIMICHI", Name = "Марина", Sum = 674 },
+//    new ClientDAO() { Unp = "7834", FullName = "MIMICHI", Name = "Экогрибы", Sum = 674 },
+
+//};    
+
+//using (HttpClient httpClient = new HttpClient())
+//{
+//    foreach (var item in collection)
+//    {
+
+//    }
+//    var requestData = new
+//    {
+//        dfrom = (DateTime?)null,
+//        dto = (DateTime?)null,
+//        isduty = false,
+//        name = $"{name}",
+//        operation = "="
+//    };
+
+//    var jsonRequest = JsonConvert.SerializeObject(requestData);
+
+//    var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
+
+//    var response = await httpClient.PostAsync("http://grp.nalog.gov.by/api/grp-public/search/payer", content);
+
+//    var responseString = await response.Content.ReadAsStringAsync();
+
+//    var jsonResponse = JsonConvert.DeserializeObject<FullClientDataDAO>(responseString);
+
+//    return new ClientDAO { FullName = jsonResponse?.ShortName, Unp = jsonResponse?.Unp, State = jsonResponse?.State };
+
+//}
 
 
 /* 

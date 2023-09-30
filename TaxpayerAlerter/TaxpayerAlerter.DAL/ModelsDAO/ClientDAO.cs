@@ -4,7 +4,7 @@ namespace TaxpayerAlerter.DAL.ModelsDAO
 {
     public class ClientDAO
     {
-        public int Unp { get; set; }
+        public string? Unp { get; set; }
         public string? Name { get; set; }
         public string? FullName { get; set; }
         public DateTime Date { get; set; }

@@ -2,6 +2,6 @@
 {
     public interface IRestService<T>
     {
-        Task<string> PostRequest(T modelDAO);
+        Task<T> PostRequest(string name);
     }
 }

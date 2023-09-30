@@ -17,7 +17,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Content="Выберите дату" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Roboto Light" FontSize="30" Margin="40"></Label>
-        <DatePicker Grid.Row="1" FontFamily="Roboto Light" FontSize="20" Margin="53, 55" IsTodayHighlighted="True" VerticalContentAlignment="Center" DisplayDateStart="2023-01-01" DisplayDateEnd="{Binding DateEnd}" Background="GhostWhite" ></DatePicker>
+        <DatePicker Grid.Row="1" SelectedDate="{Binding SelectedDate}" FontFamily="Roboto Light" FontSize="20" Margin="53, 55" IsTodayHighlighted="True" VerticalContentAlignment="Center" DisplayDateStart="2023-01-01" DisplayDateEnd="{Binding DateEnd}" Background="GhostWhite" ></DatePicker>
         <Button Grid.Row="2" Content="ОК" FontFamily="Roboto Light" FontSize="20" Margin="80, 40" Command="{Binding OKButtonClick}" Cursor="Hand" Background="AntiqueWhite" ></Button>
     </Grid>
 </Window>

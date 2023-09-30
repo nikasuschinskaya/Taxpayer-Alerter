@@ -1,11 +1,7 @@
 ﻿using Autofac;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using TaxpayerAlerter.BLL.Workers;
 using TaxpayerAlerter.UI.Commands;
@@ -18,9 +14,8 @@ namespace TaxpayerAlerter.UI.ViewModels
         private readonly Worker _worker;
         private readonly ILogger<MainViewModel> _logger;
 
-        // Надо ещё свойство для считывания даты из DatePicker  
-
         public ICommand OKButtonClick { get; set; }
+        public DateTime SelectedDate { get; set; }
         public DateTime DateEnd { get; set; }
 
         public MainViewModel()
@@ -30,7 +25,7 @@ namespace TaxpayerAlerter.UI.ViewModels
                 _logger = scope.Resolve<ILogger<MainViewModel>>();
                 _worker = scope.Resolve<Worker>();
             }
-
+            SelectedDate = DateTime.Now;
             DateEnd = DateTime.Now;
             OKButtonClick = new RelayCommand(OnOKButtonClicked);
         }
@@ -38,7 +33,8 @@ namespace TaxpayerAlerter.UI.ViewModels
         private async void OnOKButtonClicked(object parameter)
         {
             _logger.LogInformation("Пользователь нажал на кнопку ОК");
-            await _worker.StartWorkAsync();
+            await _worker.StartWorkAsync(SelectedDate);
+            MessageBox.Show(_worker.GetResult());
         }
     }
 }

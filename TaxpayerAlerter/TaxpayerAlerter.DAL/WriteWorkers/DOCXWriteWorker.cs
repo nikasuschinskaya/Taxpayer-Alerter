@@ -34,8 +34,8 @@ namespace TaxpayerAlerter.DAL.WriteWorkers
                 PutTableCell(builder, "Сумма");
                 builder.EndRow();
 
-                PutTableCell(builder, client.FullName.ToString());
-                PutTableCell(builder, client.Unp.ToString());
+                PutTableCell(builder, client.FullName);
+                PutTableCell(builder, client.Unp);
                 PutTableCell(builder, client.Sum.ToString());
                 builder.EndRow();
 

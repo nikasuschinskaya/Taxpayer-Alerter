@@ -15,7 +15,7 @@ namespace TaxpayerAlerter.DAL.WriteWorkers
 
             for (int i = 0; i < clients.Count; i++)
             {
-                workSheet[$"B{i + 2}"].Value = clients[i].Unp.ToString();
+                workSheet[$"B{i + 2}"].Value = clients[i].Unp;
                 workSheet[$"E{i + 2}"].Value = clients[i].Status.ToString();
             }
 
