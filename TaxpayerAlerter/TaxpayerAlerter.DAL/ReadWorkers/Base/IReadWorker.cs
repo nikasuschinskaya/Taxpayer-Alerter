@@ -1,9 +1,7 @@
-﻿using TaxpayerAlerter.DAL.ModelsDAO;
-
-namespace TaxpayerAlerter.DAL.ReadWorkers.Base
+﻿namespace TaxpayerAlerter.DAL.ReadWorkers.Base
 {
-    public interface IReadWorker
+    public interface IReadWorker<T>
     {
-        IEnumerable<Client> Read();
+        IEnumerable<T> Read();
     }
 }

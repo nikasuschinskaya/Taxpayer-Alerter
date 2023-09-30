@@ -5,11 +5,11 @@ using TaxpayerAlerter.DAL.WriteWorkers.Base;
 
 namespace TaxpayerAlerter.DAL.WriteWorkers
 {
-    public class DOCXWriteWorker : IWriteWorker
+    public class DOCXWriteWorker : IWriteWorker<ClientDAO>
     {
         private string _docPath = ConfigurationManager.AppSettings["docPath"].ToString();
 
-        public void Write(List<Client> clients)
+        public void Write(List<ClientDAO> clients)
         {
             DocumentBuilder builder = new DocumentBuilder();
 
@@ -18,7 +18,7 @@ namespace TaxpayerAlerter.DAL.WriteWorkers
             font.Color = System.Drawing.Color.Black;
             font.Name = "Calibri";
 
-            foreach (Client client in clients)
+            foreach (ClientDAO client in clients)
             {
                 Document doc = new Document();
 

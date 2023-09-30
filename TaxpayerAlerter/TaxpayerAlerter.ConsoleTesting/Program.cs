@@ -5,60 +5,101 @@ using System.Configuration;
 using System.Diagnostics.Metrics;
 using TaxpayerAlerter.DAL.ModelsDAO;
 using Range = IronXL.Range;
+using Newtonsoft.Json;
+using System.Text;
 
-string _doc = "C:/Study/Alfa Bank/Test task/";
+ClientDAO client = new ClientDAO() { Unp = 7834, FullName = "MIMICHI", Name = "Экогрибы", Sum = 674 };
 
-List<Client> clients = new()
+using (HttpClient httpClient = new HttpClient())
 {
-    new Client(){ Unp = 7834, FullName = "MIMICHI", Sum = 674},
-    new Client(){ Unp = 5435, FullName = "SUCHI", Sum = 100}
-};
+    var requestData = new
+    {
+        dfrom = (DateTime?)null,
+        dto = (DateTime?)null,
+        isduty = false,
+        name = $"{client.FullName}",
+        operation = "="
+    };
 
-DocumentBuilder builder = new DocumentBuilder();
+    var jsonRequest = JsonConvert.SerializeObject(requestData);
 
-Font font = builder.Font;
-font.Size = 11;
-font.Color = System.Drawing.Color.Black;
-font.Name = "Calibri";
+    var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
 
-foreach (Client client in clients)
-{
-    Document doc = new Document();
+    var response = await httpClient.PostAsync("http://grp.nalog.gov.by/api/grp-public/search/payer", content);
 
-    builder.Document = doc;
+    string? responseString;
 
-    builder.Writeln($"\nУважаемые: {client.FullName}, информируем вас о том, что вы не погасили кредит\n");
-    builder.Writeln("Ваша задолженность: \n");
 
-    builder.StartTable();
+    responseString = await response.Content.ReadAsStringAsync();
 
-    builder.InsertCell();
+    if (!response.IsSuccessStatusCode) responseString = "Ошибка при отправке запроса. Статус код: " + (int)response.StatusCode;
 
-    builder.Write("Наименование");
 
-    builder.InsertCell();
-    builder.Write("УНП");
+    Console.WriteLine(responseString);
 
-    builder.InsertCell();
-    builder.Write("Сумма");
-    builder.EndRow();
-
-    builder.InsertCell();
-    builder.Write(client.FullName.ToString());
-
-    builder.InsertCell();
-    builder.Write(client.Unp.ToString());
-
-    builder.InsertCell();
-    builder.Write(client.Sum.ToString());
-    builder.EndRow();
-
-    builder.EndTable();
-
-    builder.Writeln("\nПлатите и фигней не занимайтесь :) \n");
-
-    doc.Save(_doc + $"{client.Unp}-{DateTime.Now.ToShortDateString()}.docx");
 }
+
+
+/* 
+ [{"vunp":590222567,"vnaimk":"ООО \"Экогрибы\"","vnaimp":"Общество с ограниченной ответственностью \"Экогрибы\", 
+Гродненская обл.,Лидский р-н,Третьяковский с/с,д. Минойты","nmns":"511","vmns":"Инспекция МНС по Лидскому району ",
+"dreg":"17.08.2005","ckodsost":"1","dlikv":null,"vlikv":null,"vpadres":"Гродненская обл.,Лидский р-н,Третьяковский с/с,д. Минойты",
+"vkods":"Действующий","active":null}]
+ */
+
+//string _doc = "C:/Study/Alfa Bank/Test task/";
+
+//List<ClientDAO> clients = new()
+//{
+//    new ClientDAO(){ Unp = 7834, FullName = "MIMICHI", Sum = 674},
+//    new ClientDAO(){ Unp = 5435, FullName = "SUCHI", Sum = 100}
+//};
+
+//DocumentBuilder builder = new DocumentBuilder();
+
+//Font font = builder.Font;
+//font.Size = 11;
+//font.Color = System.Drawing.Color.Black;
+//font.Name = "Calibri";
+
+//foreach (ClientDAO client in clients)
+//{
+//    Document doc = new Document();
+
+//    builder.Document = doc;
+
+//    builder.Writeln($"\nУважаемые: {client.FullName}, информируем вас о том, что вы не погасили кредит\n");
+//    builder.Writeln("Ваша задолженность: \n");
+
+//    builder.StartTable();
+
+//    builder.InsertCell();
+
+//    builder.Write("Наименование");
+
+//    builder.InsertCell();
+//    builder.Write("УНП");
+
+//    builder.InsertCell();
+//    builder.Write("Сумма");
+//    builder.EndRow();
+
+//    builder.InsertCell();
+//    builder.Write(client.FullName.ToString());
+
+//    builder.InsertCell();
+//    builder.Write(client.Unp.ToString());
+
+//    builder.InsertCell();
+//    builder.Write(client.Sum.ToString());
+//    builder.EndRow();
+
+//    builder.EndTable();
+
+//    builder.Writeln("\nПлатите и фигней не занимайтесь :) \n");
+
+//    doc.Save(_doc + $"{client.Unp}-{DateTime.Now.ToShortDateString()}.docx");
+//}
 
 
 

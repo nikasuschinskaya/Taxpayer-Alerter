@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaxpayerAlerter.DAL.ModelsDAO;
 using TaxpayerAlerter.DAL.ReadWorkers;
 using TaxpayerAlerter.DAL.ReadWorkers.Base;
 using TaxpayerAlerter.DAL.WriteWorkers;
@@ -12,7 +13,7 @@ namespace TaxpayerAlerter.BLL.Workers
 {
     public class Worker
     {
-        private readonly XLSXReadWorker _xlsxReadWorker;
+        private readonly IReadWorker<ClientDAO> _xlsxReadWorker;
         private readonly DOCXWriteWorker _docWriteWorker;
         private readonly XLSXWriteWorker _xlsxWriteWorker;
         private readonly ILogger<Worker> _logger;

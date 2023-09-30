@@ -1,9 +1,7 @@
-﻿using TaxpayerAlerter.DAL.ModelsDAO;
-
-namespace TaxpayerAlerter.DAL.WriteWorkers.Base
+﻿namespace TaxpayerAlerter.DAL.WriteWorkers.Base
 {
-    public interface IWriteWorker
+    public interface IWriteWorker<T>
     {
-        void Write(List<Client> client);
+        void Write(List<T> client);
     }
 }
