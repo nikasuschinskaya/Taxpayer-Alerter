@@ -1,5 +1,6 @@
 ﻿using IronXL;
 using System.Configuration;
+using TaxpayerAlerter.DAL.Enums;
 using TaxpayerAlerter.DAL.ModelsDAO;
 using TaxpayerAlerter.DAL.WriteWorkers.Base;
 
@@ -15,11 +16,20 @@ namespace TaxpayerAlerter.DAL.WriteWorkers
 
             for (int i = 0; i < clients.Count; i++)
             {
-                workSheet[$"B{i + 2}"].Value = clients[i].Unp;
-                workSheet[$"E{i + 2}"].Value = clients[i].Status.ToString();
+                workSheet[$"B{i + 2}"].Value = clients[i]?.Unp;
+                workSheet[$"E{i + 2}"].Value = GetStatus(clients[i].Status);
             }
 
             workBook.Save();
         }
+
+        private string GetStatus(Status status) => status switch
+        {
+            Status.None => "Не присвоен",
+            Status.Passed => "Выполнено",
+            Status.ManualCheck => "Ручная проверка",
+            Status.Error => "Ошибка",
+            _ => "Не присвоен",
+        };
     }
 }

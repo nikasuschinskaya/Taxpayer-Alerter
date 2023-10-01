@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using System.Net;
 using TaxpayerAlerter.DAL.ModelsDAO;
 using TaxpayerAlerter.DAL.ReadWorkers;
 using TaxpayerAlerter.DAL.RestServices.Base;
@@ -32,6 +33,7 @@ namespace TaxpayerAlerter.BLL.Workers
         public async Task StartWorkAsync(DateTime selectedDate)
         {
             var newClients = new List<ClientDAO>();
+            var clientsForDoc = new List<ClientDAO>();
             var clients = _xlsxReadWorker.Read();
 
             //clients.Where(c => c.Date <= selectedDate).Select(c => newClients.Add(_clientRestService.PostRequest(c.Name).Result));
@@ -40,14 +42,21 @@ namespace TaxpayerAlerter.BLL.Workers
                 if (selectedDate >= client.Date)
                 {
                     ClientDAO newClient = _clientRestService.PostRequest(client.Name).Result;
+                   
                     newClients.Add(newClient);
                     _logger.LogInformation($"Обработан клиент с датой {client.Date}");
                 }
             }
             _logger.LogInformation("Идет запись всех клинтов в Exel файл");
             _xlsxWriteWorker.Write(newClients);
+
+            foreach (var client in newClients)
+            {
+                if (client.Status != DAL.Enums.Status.Error) clientsForDoc.Add(client);
+            }
+
             _logger.LogInformation("Идет запись всех клинтов в Doc файл");
-            _docWriteWorker.Write(newClients);
+            _docWriteWorker.Write(clientsForDoc);
             _result = "Готово!";
         }
 
