@@ -9,7 +9,7 @@ namespace TaxpayerAlerter.DAL.ReadWorkers
     {
         private string _xlsxPath = ConfigurationManager.AppSettings["xlsxPath"].ToString();
 
-        public IEnumerable<ClientDAO> Read()
+        public async Task<IEnumerable<ClientDAO>> Read()
         {
             WorkBook workBook = WorkBook.Load(_xlsxPath);
             WorkSheet workSheet = workBook.WorkSheets.First();

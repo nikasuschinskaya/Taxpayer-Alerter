@@ -34,9 +34,8 @@ namespace TaxpayerAlerter.BLL.Workers
         {
             var newClients = new List<ClientDAO>();
             var clientsForDoc = new List<ClientDAO>();
-            var clients = _xlsxReadWorker.Read();
+            var clients = await _xlsxReadWorker.Read();
 
-            //clients.Where(c => c.Date <= selectedDate).Select(c => newClients.Add(_clientRestService.PostRequest(c.Name).Result));
             foreach (var client in clients)
             {
                 if (selectedDate >= client.Date)
@@ -48,15 +47,13 @@ namespace TaxpayerAlerter.BLL.Workers
                 }
             }
             _logger.LogInformation("Идет запись всех клинтов в Exel файл");
-            _xlsxWriteWorker.Write(newClients);
+            await _xlsxWriteWorker.Write(newClients);
 
             foreach (var client in newClients)
-            {
                 if (client.Status != DAL.Enums.Status.Error) clientsForDoc.Add(client);
-            }
 
             _logger.LogInformation("Идет запись всех клинтов в Doc файл");
-            _docWriteWorker.Write(clientsForDoc);
+            await _docWriteWorker.Write(clientsForDoc);
             _result = "Готово!";
         }
 

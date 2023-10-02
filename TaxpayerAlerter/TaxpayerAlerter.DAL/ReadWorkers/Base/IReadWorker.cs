@@ -2,6 +2,6 @@
 {
     public interface IReadWorker<T>
     {
-        IEnumerable<T> Read();
+        Task<IEnumerable<T>> Read();
     }
 }

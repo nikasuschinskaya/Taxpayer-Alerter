@@ -9,7 +9,7 @@ namespace TaxpayerAlerter.DAL.WriteWorkers
     public class XLSXWriteWorker : IWriteWorker<ClientDAO>
     {
         private string _xlsxPath = ConfigurationManager.AppSettings["xlsxPath"].ToString();
-        public void Write(List<ClientDAO> clients)
+        public async Task Write(List<ClientDAO> clients)
         {
             WorkBook workBook = WorkBook.Load(_xlsxPath);
             WorkSheet workSheet = workBook.DefaultWorkSheet;
@@ -20,7 +20,7 @@ namespace TaxpayerAlerter.DAL.WriteWorkers
                 workSheet[$"E{i + 2}"].Value = GetStatus(clients[i].Status);
             }
 
-            workBook.Save();
+            await Task.Run(() => workBook.Save());
         }
 
         private string GetStatus(Status status) => status switch

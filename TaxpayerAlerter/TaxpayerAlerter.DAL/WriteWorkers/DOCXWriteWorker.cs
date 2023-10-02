@@ -9,7 +9,7 @@ namespace TaxpayerAlerter.DAL.WriteWorkers
     {
         private string _docPath = ConfigurationManager.AppSettings["docPath"].ToString();
 
-        public void Write(List<ClientDAO> clients)
+        public async Task Write(List<ClientDAO> clients)
         {
             DocumentBuilder builder = new DocumentBuilder();
 
@@ -43,7 +43,7 @@ namespace TaxpayerAlerter.DAL.WriteWorkers
 
                 builder.Writeln("\nПлатите и фигней не занимайтесь :) \n");
 
-                doc.Save(_docPath + $"{client.Unp}-{DateTime.Now.ToShortDateString()}.docx");
+                await Task.Run(() => doc.Save(_docPath + $"{client.Unp}-{DateTime.Now.ToShortDateString()}.docx"));
             }
         }
 
