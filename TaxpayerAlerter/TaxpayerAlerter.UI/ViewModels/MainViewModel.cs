@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using TaxpayerAlerter.BLL.Workers;
@@ -33,8 +34,28 @@ namespace TaxpayerAlerter.UI.ViewModels
         private async void OnOKButtonClicked(object parameter)
         {
             _logger.LogInformation("Пользователь нажал на кнопку ОК");
-            await _worker.StartWorkAsync(SelectedDate);
-            MessageBox.Show(_worker.GetResult());
+            await ProcessClientDataAsync();
+            //await _worker.StartWorkAsync(SelectedDate);
+            //MessageBox.Show(_worker.GetResult());
         }
+
+        private async Task ProcessClientDataAsync()
+        {
+            var selectedDate = SelectedDate;
+            _logger.LogInformation("Начат процесс обработки данных клиентов.");
+
+            try
+            {
+                await _worker.StartWorkAsync(selectedDate);
+                var result = _worker.GetResult();
+                MessageBox.Show(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Произошла ошибка при обработке данных: {ex.Message}");
+                MessageBox.Show("Произошла ошибка при обработке данных.");
+            }
+        }
+
     }
 }

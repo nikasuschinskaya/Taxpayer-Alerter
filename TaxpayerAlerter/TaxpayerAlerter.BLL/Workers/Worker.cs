@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using System.Net;
+using TaxpayerAlerter.DAL.Enums;
 using TaxpayerAlerter.DAL.ModelsDAO;
 using TaxpayerAlerter.DAL.ReadWorkers;
 using TaxpayerAlerter.DAL.RestServices.Base;
@@ -40,8 +41,9 @@ namespace TaxpayerAlerter.BLL.Workers
             {
                 if (selectedDate >= client.Date)
                 {
-                    ClientDAO newClient = _clientRestService.PostRequest(client.Name).Result;
-                   
+                    ClientDAO newClient = await _clientRestService.PostRequest(client.Name);
+                    
+                    newClient.Sum = client.Sum;
                     newClients.Add(newClient);
                     _logger.LogInformation($"Обработан клиент с датой {client.Date}");
                 }
@@ -50,7 +52,7 @@ namespace TaxpayerAlerter.BLL.Workers
             await _xlsxWriteWorker.Write(newClients);
 
             foreach (var client in newClients)
-                if (client.Status != DAL.Enums.Status.Error) clientsForDoc.Add(client);
+                if (client.Status != Status.Error) clientsForDoc.Add(client);
 
             _logger.LogInformation("Идет запись всех клинтов в Doc файл");
             await _docWriteWorker.Write(clientsForDoc);

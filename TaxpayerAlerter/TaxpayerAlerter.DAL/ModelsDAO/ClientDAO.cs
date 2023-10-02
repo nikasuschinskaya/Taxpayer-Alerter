@@ -1,4 +1,5 @@
-﻿using TaxpayerAlerter.DAL.Enums;
+﻿using System.Text.Json.Serialization;
+using TaxpayerAlerter.DAL.Enums;
 
 namespace TaxpayerAlerter.DAL.ModelsDAO
 {
