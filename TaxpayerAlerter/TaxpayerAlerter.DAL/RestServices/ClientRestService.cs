@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
+using System.Configuration;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,8 +41,8 @@ namespace TaxpayerAlerter.DAL.RestServices
 
                 var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
 
-                var response = await _httpClient.PostAsync("http://grp.nalog.gov.by/api/grp-public/search/payer", content);
-                _logger.LogInformation($"Response: {response.StatusCode.ToString()}");
+                var response = await _httpClient.PostAsync(ConfigurationManager.AppSettings["urlNalogGovBy"]?.ToString(), content);
+                _logger.LogInformation($"Response: {response.StatusCode}");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -54,21 +55,21 @@ namespace TaxpayerAlerter.DAL.RestServices
                     }
                     else
                     {
-                        var jsonResponse = JsonConvert.DeserializeObject<List<FullClientDataDAO>>(responseString);
+                        var jsonResponse = JsonConvert.DeserializeObject<List<ClientDAO>>(responseString);
 
                         if (jsonResponse.Count == 1)
                         {
                             if (jsonResponse[0].State != "Действующий" || jsonResponse[0].Unp == null)
                             {
-                                return new ClientDAO { FullName = jsonResponse[0].ShortName, Status = Status.Error };
+                                return new ClientDAO { FullName = jsonResponse[0].FullName, Status = Status.Error };
                             }
-                            return new ClientDAO { FullName = jsonResponse[0].ShortName, Unp = jsonResponse[0].Unp, State = jsonResponse[0].State, Status = Status.Passed };
+                            return new ClientDAO { FullName = jsonResponse[0].FullName, Unp = jsonResponse[0].Unp, State = jsonResponse[0].State, Status = Status.Passed };
                         }
                         else if(jsonResponse.Count > 1)
                         {
-                            return new ClientDAO { FullName = jsonResponse[0].ShortName, Unp = jsonResponse[0].Unp, State = jsonResponse[0].State, Status = Status.ManualCheck };
+                            return new ClientDAO { FullName = jsonResponse[0].FullName, Unp = jsonResponse[0].Unp, State = jsonResponse[0].State, Status = Status.ManualCheck };
                         }
-                        else return new ClientDAO { FullName = jsonResponse[0].ShortName, Status = Status.Error };
+                        else return new ClientDAO { FullName = jsonResponse[0].FullName, Status = Status.Error };
                     }
                 }
             }
