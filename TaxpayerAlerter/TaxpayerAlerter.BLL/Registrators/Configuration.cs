@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using Autofac.Features.AttributeFilters;
-using Microsoft.Extensions.Logging;
 using TaxpayerAlerter.BLL.Workers;
 using TaxpayerAlerter.BLL.Workers.Base;
 using TaxpayerAlerter.DAL.Registrators;
@@ -14,8 +13,6 @@ namespace TaxpayerAlerter.BLL.Registrators
             builder.RegisterDAL();
 
             builder.RegisterType<Worker>().As<IWorker>().WithAttributeFiltering();
-
-            //builder.RegisterGeneric(typeof(Logger<>)).As(typeof(ILogger<>));
 
             return builder;
         }
