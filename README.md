@@ -6,13 +6,13 @@
 1.	Excel файл – содержит наименования клиентов, их даты и сумму долга.
 
 <p align="center">
-  <img src="https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/334727d6-3d03-412e-81c6-04f78e20c8db">
+  <img src="https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/baa5fe11-2bcb-469c-96de-2a65143175e9">
 </p>
 
 2.	Word файл – шаблон оферты.
 
 <p align="center">
-  <img src="https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/51345db6-445b-4852-9f9e-f9f99652c147">
+  <img src="https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/021a2405-5b4d-42a6-8cfd-6e812e5a7dfc">
 </p>
 
 ## Пользовательский интерфейс
