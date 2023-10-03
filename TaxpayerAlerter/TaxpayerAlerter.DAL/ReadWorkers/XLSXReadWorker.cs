@@ -25,9 +25,8 @@ namespace TaxpayerAlerter.DAL.ReadWorkers
                     Date = DateTime.Parse(range[2].Value.ToString()),
                     Sum = int.Parse(range[3].Value.ToString())
                 };
-                clients.Add(client);
+                await Task.Run(() => clients.Add(client));
             }
-
             return clients;
         }
     }

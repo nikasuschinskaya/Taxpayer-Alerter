@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using System.Net;
 using TaxpayerAlerter.DAL.Enums;
 using TaxpayerAlerter.DAL.ModelsDAO;
 using TaxpayerAlerter.DAL.ReadWorkers;

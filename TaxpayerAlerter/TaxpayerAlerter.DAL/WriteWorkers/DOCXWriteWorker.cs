@@ -11,16 +11,16 @@ namespace TaxpayerAlerter.DAL.WriteWorkers
 
         public async Task Write(List<ClientDAO> clients)
         {
-            DocumentBuilder builder = new DocumentBuilder();
+            DocumentBuilder builder = new();
 
-            Font font = builder.Font;
+            var font = builder.Font;
             font.Size = 11;
             font.Color = System.Drawing.Color.Black;
             font.Name = "Calibri";
 
             foreach (ClientDAO client in clients)
             {
-                Document doc = new Document();
+                Document doc = new();
 
                 builder.Document = doc;
 
