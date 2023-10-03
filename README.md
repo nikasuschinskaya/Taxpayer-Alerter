@@ -12,7 +12,7 @@
 2.	Word файл – шаблон оферты.
 
 <p align="center">
-  <img src="https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/021a2405-5b4d-42a6-8cfd-6e812e5a7dfc">
+  <img src="https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/afa2b84b-ae6b-402f-a507-a462a71b3b72">
 </p>
 
 ## Пользовательский интерфейс
@@ -20,7 +20,7 @@
 1. Выбор даты - возможность выбора даты ограничена текущим годом и сегодняшним днем (невозможность выбрать дату, которая еще не наступила и в не в текущем году). По умолчанию стоит сегодняшняя дата.
 
 <p align="center">
-  <img src="https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/dd139575-b3ee-4e12-a979-83f234630229">
+  <img src="https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/0f53130f-a98d-4bb0-b6af-e9b3828fbe3c">
 </p>
 
 2.	Для подтверждения выбора даты нужно нажать на кнопку «ОК».
@@ -38,7 +38,7 @@
 Так как программа обращается к удаленному хосту, без интернета программа не будет работать.
 
 <p align="center">
-  <img src="https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/f2dd608e-cb6d-417b-9665-27361f15a84b">
+  <img src="https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/43b64d44-0745-4539-91e1-bcbb86fc370e">
 </p>
 
 4.	При успешном выполнении программы, в папке Files исходный Excel файл дополнится, и создадутся файлы оферты в папке Files/ProposalFiles. 
@@ -56,7 +56,7 @@
 Файл 100921458-03.10.2023.docx
 
 <p align="center">
-  <img src="https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/ec2a36c1-ee3f-40d4-9093-ed384d59379f">
+  <img src="https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/f46bf555-4c07-4236-abef-8c93310f0285">
 </p>
 
 ## Дополнительная информация
