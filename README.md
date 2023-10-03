@@ -44,7 +44,7 @@
 4.	При успешном выполнении программы, в папке Files исходный Excel файл дополнится, и создадутся файлы оферты в папке Files/ProposalFiles. 
 
 <p align="center">
-  <img src="https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/653b5e50-2370-459d-9028-fb2fcbd7d17a">
+  <img src="https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/20030a96-b48f-4654-9bc9-f95e7110c63a">
 </p>
 
 Статус «Не присвоен» не был указан в задании, но я добавила его для случаев, если данное наименование не обрабатывается программой, так как не подходит по условию выбранной пользователем даты.
