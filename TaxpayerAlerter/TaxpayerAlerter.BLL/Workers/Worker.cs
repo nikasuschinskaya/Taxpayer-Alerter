@@ -33,29 +33,34 @@ namespace TaxpayerAlerter.BLL.Workers
 
         public async Task StartWorkAsync(DateTime selectedDate)
         {
-            var newClients = new List<ClientDAO>();
-            var clientsForDoc = new List<ClientDAO>();
             var clients = await _xlsxReadWorker.Read();
 
             foreach (var client in clients)
             {
                 if (selectedDate >= client.Date)
                 {
-                    ClientDAO newClient = await _clientRestService.PostRequest(client.Name);
-                    
-                    newClient.Sum = client.Sum;
-                    newClients.Add(newClient);
+                    var newClient = await _clientRestService.PostRequest(client.Name);
+
+                    client.Unp = newClient.Unp;
+                    client.State = newClient.State;
+                    client.Status = newClient.Status;
+                    client.FullName = newClient.FullName;
+
                     _logger.LogInformation($"Обработан клиент с датой {client.Date}");
                 }
+                else
+                {
+                    client.Status = Status.None;
+                    client.Unp = "-";
+                }
             }
-            _logger.LogInformation("Идет запись всех клинтов в Exel файл");
-            await _xlsxWriteWorker.Write(newClients);
+            _logger.LogInformation("Идет запись всех клиентов в Exel файл");
+            await _xlsxWriteWorker.Write(clients.ToList());
 
-            foreach (var client in newClients)
-                if (client.Status != Status.Error) clientsForDoc.Add(client);
-
-            _logger.LogInformation("Идет запись всех клинтов в Doc файл");
-            await _docWriteWorker.Write(clientsForDoc);
+            _logger.LogInformation("Идет клиентов в Doc файл");
+            await _docWriteWorker.Write(clients
+                                        .Where(client => client.Status == Status.Passed || client.Status == Status.ManualCheck)
+                                        .ToList());
             _result = "Готово!";
         }
 

@@ -35,8 +35,6 @@ namespace TaxpayerAlerter.UI.ViewModels
         {
             _logger.LogInformation("Пользователь нажал на кнопку ОК");
             await ProcessClientDataAsync();
-            //await _worker.StartWorkAsync(SelectedDate);
-            //MessageBox.Show(_worker.GetResult());
         }
 
         private async Task ProcessClientDataAsync()

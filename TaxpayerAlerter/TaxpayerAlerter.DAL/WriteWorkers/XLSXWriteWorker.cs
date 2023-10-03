@@ -14,7 +14,7 @@ namespace TaxpayerAlerter.DAL.WriteWorkers
             WorkBook workBook = WorkBook.Load(_xlsxPath);
             WorkSheet workSheet = workBook.DefaultWorkSheet;
 
-            for (int i = 0; i < clients.Count; i++)
+            for (int i = 0; i < clients.Count(); i++)
             {
                 workSheet[$"B{i + 2}"].Value = clients[i]?.Unp;
                 workSheet[$"E{i + 2}"].Value = GetStatus(clients[i].Status);
