@@ -2,6 +2,6 @@
 {
     public interface IRestService<T>
     {
-        Task<T> PostRequest(string name);
+        Task<T> GetClientByName(string name);
     }
 }

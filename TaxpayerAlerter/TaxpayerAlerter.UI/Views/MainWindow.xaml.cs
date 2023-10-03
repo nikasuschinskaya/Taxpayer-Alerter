@@ -1,9 +1,5 @@
-﻿using System.Windows;
-
-namespace TaxpayerAlerter.UI.Views
+﻿namespace TaxpayerAlerter.UI.Views;
+public partial class MainWindow
 {
-    public partial class MainWindow : Window
-    {
-        public MainWindow() => InitializeComponent();
-    }
+    public MainWindow() => InitializeComponent();
 }

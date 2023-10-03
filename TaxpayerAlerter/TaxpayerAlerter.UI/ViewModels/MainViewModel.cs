@@ -4,7 +4,7 @@ using System;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using TaxpayerAlerter.BLL.Workers;
+using TaxpayerAlerter.BLL.Workers.Base;
 using TaxpayerAlerter.UI.Commands;
 using TaxpayerAlerter.UI.ViewModels.Base;
 
@@ -12,7 +12,7 @@ namespace TaxpayerAlerter.UI.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        private readonly Worker _worker;
+        private readonly IWorker _worker;
         private readonly ILogger<MainViewModel> _logger;
 
         public ICommand OKButtonClick { get; set; }
@@ -24,7 +24,7 @@ namespace TaxpayerAlerter.UI.ViewModels
             using (var scope = App.Container.BeginLifetimeScope())
             {
                 _logger = scope.Resolve<ILogger<MainViewModel>>();
-                _worker = scope.Resolve<Worker>();
+                _worker = scope.Resolve<IWorker>();
             }
             SelectedDate = DateTime.Now;
             DateEnd = DateTime.Now;
@@ -45,15 +45,13 @@ namespace TaxpayerAlerter.UI.ViewModels
             try
             {
                 await _worker.StartWorkAsync(selectedDate);
-                var result = _worker.GetResult();
-                MessageBox.Show(result);
+                MessageBox.Show(_worker.GetResult());
             }
             catch (Exception ex)
             {
                 _logger.LogError($"Произошла ошибка при обработке данных: {ex.Message}");
-                MessageBox.Show("Произошла ошибка при обработке данных.");
+                MessageBox.Show("Произошла ошибка при обработке данных!");
             }
         }
-
     }
 }

@@ -1,12 +1,12 @@
 ﻿using Autofac;
 using Microsoft.Extensions.Logging;
 using TaxpayerAlerter.DAL.ModelsDAO;
-using TaxpayerAlerter.DAL.ReadWorkers;
-using TaxpayerAlerter.DAL.ReadWorkers.Base;
+using TaxpayerAlerter.DAL.Readers;
+using TaxpayerAlerter.DAL.Readers.Base;
 using TaxpayerAlerter.DAL.RestServices;
 using TaxpayerAlerter.DAL.RestServices.Base;
-using TaxpayerAlerter.DAL.WriteWorkers;
-using TaxpayerAlerter.DAL.WriteWorkers.Base;
+using TaxpayerAlerter.DAL.Writers;
+using TaxpayerAlerter.DAL.Writers.Base;
 
 namespace TaxpayerAlerter.DAL.Registrators
 {
@@ -14,10 +14,9 @@ namespace TaxpayerAlerter.DAL.Registrators
     {
         public static ContainerBuilder RegisterDAL(this ContainerBuilder builder)
         {
-            builder.RegisterType<XLSXReadWorker>().As<IReadWorker<ClientDAO>>();
-
-            builder.RegisterType<DOCXWriteWorker>().As<IWriteWorker<ClientDAO>>();
-            builder.RegisterType<XLSXWriteWorker>().As<IWriteWorker<ClientDAO>>();
+            builder.RegisterType<XLSXReader>().As<IReader<ClientDAO>>();
+            builder.RegisterType<DOCXWriter>().As<IWriter<ClientDAO>>();
+            builder.RegisterType<XLSXWriter>().As<IWriter<ClientDAO>>();
 
             builder.Register(c => new HttpClient()).SingleInstance();
             builder.RegisterGeneric(typeof(Logger<>)).As(typeof(ILogger<>));
