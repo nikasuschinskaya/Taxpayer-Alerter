@@ -1,44 +1,63 @@
 # Taxpayer-Alerter
-
+# Настоятельно рекомендую ознакомиться с описанием
+ 
 ## Исходные данные
 
 1.	Excel файл – содержит наименования клиентов, их даты и сумму долга.
 
-![image](https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/334727d6-3d03-412e-81c6-04f78e20c8db)
+<p align="center">
+  <img src="https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/334727d6-3d03-412e-81c6-04f78e20c8db">
+</p>
 
 2.	Word файл – шаблон оферты.
 
-![image](https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/51345db6-445b-4852-9f9e-f9f99652c147)
+<p align="center">
+  <img src="https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/51345db6-445b-4852-9f9e-f9f99652c147">
+</p>
 
 ## Пользовательский интерфейс
 
 1. Выбор даты - возможность выбора даты ограничена текущим годом и сегодняшним днем (невозможность выбрать дату, которая еще не наступила и в не в текущем году). По умолчанию стоит сегодняшняя дата.
 
-![image](https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/24673fa1-8135-4b36-b257-021f88b3bc90)
+<p align="center">
+  <img src="https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/24673fa1-8135-4b36-b257-021f88b3bc90">
+</p>
 
 2.	Для подтверждения выбора даты нужно нажать на кнопку «ОК».
 
-![image](https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/d5b0a314-b46b-4043-97af-e15d75b9585d)
+<p align="center">
+  <img src="https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/d5b0a314-b46b-4043-97af-e15d75b9585d">
+</p>
 
 3.	Программа выполняется примерно в течении минуты, так как один post запрос выполняется в среднем 7-8 секунд. При успешном выполнении всех запросов и записи в файлы пользователь увидит всплывающее окно с оповещением, что все готово.
 
-![image](https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/3199534b-59b5-419d-a309-e635f30ec188)
+<p align="center">
+  <img src="https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/3199534b-59b5-419d-a309-e635f30ec188">
+</p>
 
-Так как программа обращается к удаленному хосту, без интернета программа не будет работать. Пользователь увидит уведомление об этом.
+Так как программа обращается к удаленному хосту, без интернета программа не будет работать.
 
-![image](https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/f2dd608e-cb6d-417b-9665-27361f15a84b)
+<p align="center">
+  <img src="https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/f2dd608e-cb6d-417b-9665-27361f15a84b">
+</p>
 
 4.	При успешном выполнении программы, в папке Files исходный Excel файл дополнится, и создадутся файлы оферты в папке Files/ProposalFiles. 
 
-![image](https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/653b5e50-2370-459d-9028-fb2fcbd7d17a)
+<p align="center">
+  <img src="https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/653b5e50-2370-459d-9028-fb2fcbd7d17a">
+</p>
 
 Статус «Не присвоен» не был указан в задании, но я добавила его для случаев, если данное наименование не обрабатывается программой, так как не подходит по условию выбранной пользователем даты.
 
-![image](https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/67ea46d3-5771-4318-a17c-049a7e340368)
+<p align="center">
+  <img src="https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/67ea46d3-5771-4318-a17c-049a7e340368">
+</p>
 
 Файл 100921458-03.10.2023.docx
 
-![image](https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/ec2a36c1-ee3f-40d4-9093-ed384d59379f)
+<p align="center">
+  <img src="https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/ec2a36c1-ee3f-40d4-9093-ed384d59379f">
+</p>
 
 ## Дополнительная информация
 
@@ -55,8 +74,6 @@
 Так как я беру первый ответ от сервера, если несколько УНП, то Соседи у меня превратились в ОДО «Энергоресурс» :)
 Приложен скриншот из Postman.
 
-![image](https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/2774d349-686a-4b60-888b-e351edcfd454)
-
-
-
-
+<p align="center">
+  <img src="https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/2774d349-686a-4b60-888b-e351edcfd454">
+</p>
