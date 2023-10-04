@@ -37,7 +37,7 @@
   <img src="https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/f711e19a-a27d-4bff-a289-0ad5b0d14bd5">
 </p>
 
-Так как программа обращается к удаленному хосту, без интернета программа не будет работать.
+Так как программа обращается к удаленному серверу, без интернета программа не будет работать.
 
 <p align="center">
   <img src="https://github.com/nikasuschinskaya/Taxpayer-Alerter/assets/92970744/43b64d44-0745-4539-91e1-bcbb86fc370e">
